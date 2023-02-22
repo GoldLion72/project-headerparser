@@ -27,7 +27,10 @@ app.get('/api/hello', function (req, res) {
 
 //API for user information.
 app.get('/api/whoami', (req, res) => {
-  res.json({system: `${os.type()} ${os.platform()} ${os.release()}`});
+  const userIP = req.ip;
+  const userAgent = req.headers['user-agent'];
+  const acceptLanguage = req.headers['accept-language'];
+  res.json({ipaddress: `${userIP}`, language: `${acceptLanguage}`,system: `${userAgent}`});
 });
 
 // listen for requests :)
